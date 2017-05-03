@@ -30,6 +30,7 @@ int getlines(char s[],int lim)
 }
 
 
+
 void reverse(char line[], int len){
 	int i;
 	char templine[len+1];
