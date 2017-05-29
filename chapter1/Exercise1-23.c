@@ -1,9 +1,10 @@
-#include "studio.h"
+#include <stdio.h>
 
 #define MAXLINE 1000   /* maximum input line length */
 void emptyRest(char s[], int begin, int limit);
 int deleteComment(char s[], int limit);
 int flip(int mute);
+int getlines(char line[], int maxline);
 /* print the input line which length is larger than 80*/
 int main()
 {
@@ -46,9 +47,10 @@ int deleteComment(char s[], int limit)
 
 	for (int i = 0; i < limit; i++)
 	{
-		if (!mute && (((typeFlag = s[i] == '"')) || ((typeFlag = s[i] == '\''))))
+		if (!mute && (((typeFlag = s[i]== '"')) || ((typeFlag = s[i] == '\''))))
 		{
 			mute = flip(mute);
+            typeFlag = s[i];
 			continue;
 		}
 		if (mute && (s[i] == typeFlag))
@@ -56,12 +58,12 @@ int deleteComment(char s[], int limit)
 			mute = flip(mute);
 			continue;
 		}
-		if (s[i] == '\/' && !mute && !last)
+		if (s[i] == '/' && !mute && !last)
 		{
 			last = flip(last);
 			continue;
 		}
-		if (s[i] == '\/' && !mute && last)
+		if (s[i] == '/' && !mute && last)
 		{
 			emptyRest(s, i-1, limit);
 			return i;
@@ -82,3 +84,17 @@ void emptyRest(char s[], int begin, int limit)
 		s[i] = ' ';
 	}
 }
+
+int getlines(char s[],int lim)
+{
+    int c, i;
+    for (i=0; i < lim-1 && (c=getchar())!=EOF && c!='\n'; ++i)
+        s[i] = c;
+    if (c == '\n') {
+        s[i] = c;
+        ++i;
+    }
+    s[i] = '\0';
+    return i;
+}
+
