@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+int TempConvertor(int fahr);
+
 int main()
 {
     float fahr, celsius;
@@ -12,8 +14,13 @@ int main()
     printf("%-3s %-6s \n", "fahr", "celsius");
     
     while (fahr <= upper) {
-        celsius = 5 * (fahr-32) / 9;
+				celsius = TempConvertor(fahr);
         printf("%3.0f %6.1f \n", fahr, celsius);
         fahr = fahr + step;
     }
+}
+
+int TempConvertor(int fahr)
+{
+	return 5 * (fahr-32 / 9);
 }

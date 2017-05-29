@@ -1,7 +1,5 @@
-//Exercise 1.15. Rewrite the temperature conversion program of Section 1.2 to use a function for conversion.
+//Exercise 1-3. Modify the temperature conversion program to print a heading above the table.
 #include <stdio.h>
-
-int TempConvertor(int fahr);
 
 int main()
 {
@@ -15,13 +13,8 @@ int main()
     printf("%-3s %-6s \n", "fahr", "celsius");
     
     while (fahr <= upper) {
-				celsius = TempConvertor(fahr);
+        celsius = 5 * (fahr-32) / 9;
         printf("%3.0f %6.1f \n", fahr, celsius);
         fahr = fahr + step;
     }
-}
-
-int TempConvertor(int fahr)
-{
-	return 5 * (fahr-32 / 9);
 }
